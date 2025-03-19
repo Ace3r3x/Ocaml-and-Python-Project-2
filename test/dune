@@ -1,0 +1,3 @@
+(test
+ (name testCw2)
+ (libraries qcheck cw2))

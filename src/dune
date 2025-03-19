@@ -1,0 +1,7 @@
+(library
+ (public_name cw2)
+ (name cw2))
+
+(env
+  (dev
+    (flags (:standard -w -32 -warn-error -A))))

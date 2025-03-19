@@ -1,0 +1,26 @@
+stages:
+  - build
+  - test
+
+build:
+  # https://docs.gitlab.com/ee/ci/yaml/#cache
+  stage: build
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - _opam
+  script:
+    - opam install --deps-only -t -y .
+
+test:
+  stage: test
+  cache:
+    key: "$CI_COMMIT_REF_SLUG"
+    paths:
+      - _opam
+  script:
+    - eval $(opam env)
+    - opam switch
+    - dune clean
+    - dune runtest --profile release
+
